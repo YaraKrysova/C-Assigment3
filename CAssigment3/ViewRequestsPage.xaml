@@ -39,6 +39,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="Back to Rooms" Style="{StaticResource DefaultButtonStyle}" Clicked="OnBackToRoomsClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

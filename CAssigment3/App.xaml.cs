@@ -7,11 +7,18 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+
         ReservationRequestManager = new ReservationRequestManager();
-        ReservationRequestManager.AddMeetingRoom("A102", 20, RoomLayoutType.hollowSquare, "hollowSquare_icon.svg");
-        ReservationRequestManager.AddMeetingRoom("B103", 25, RoomLayoutType.ushape, "ushape_icon.svg");
-        ReservationRequestManager.AddMeetingRoom("C202", 40, RoomLayoutType.classroom, "classroom_icon.svg");
-        ReservationRequestManager.AddMeetingRoom("C105", 200, RoomLayoutType.auditorium, "auditorium_icon.svg");
+
+        if (!ReservationRequestManager.MeetingRooms.Any())
+        {
+            ReservationRequestManager.AddMeetingRoom("A101", 20, RoomLayoutType.HollowSquare, "HollowSquare.png");
+            ReservationRequestManager.AddMeetingRoom("B102", 25, RoomLayoutType.UShape, "UShape.png");
+            ReservationRequestManager.AddMeetingRoom("C103", 30, RoomLayoutType.Classroom, "Classroom.png");
+            ReservationRequestManager.AddMeetingRoom("D104", 50, RoomLayoutType.Auditorium, "Auditorium.png");
+        }
+        
         MainPage = new NavigationPage(new PickRoomPage());
     }
+}
 }

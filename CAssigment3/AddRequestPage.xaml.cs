@@ -8,44 +8,56 @@ namespace CAssigment3
 {
     public partial class AddRequestPage : ContentPage
     {
-        public AddRequestPage()
+        private MeetingRoom _selectedRoom;
+
+        public AddRequestPage(MeetingRoom room)
         {
             InitializeComponent();
+            _selectedRoom = room;
+
+            // Bind the selected room details.
+            RoomDetailsLabel.Text = $"Room: {_selectedRoom.RoomNumber} | Capacity: {_selectedRoom.SeatingCapacity} | Layout: {_selectedRoom.RoomLayout}";
+            MeetingDatePicker.Date = DateTime.Today;
         }
 
-        private void OnSubmitRequestClicked(object sender, EventArgs e)
+        private async void OnAddRequestClicked(object sender, EventArgs e)
         {
             try
             {
-                // In a real scenario, you'd pick the selected room from the previous page or a dropdown
-                // For demonstration, let's assume a default room number:
-                string roomNumber = "A102";
-
-                string requestedBy = RequestedByEntry.Text;
+                string requestedBy = NameEntry.Text;
                 string description = DescriptionEditor.Text;
                 DateTime meetingDate = MeetingDatePicker.Date;
                 TimeSpan startTime = StartTimePicker.Time;
                 TimeSpan endTime = EndTimePicker.Time;
                 int participantCount = int.Parse(ParticipantCountEntry.Text);
-
-                // Use your ReservationRequestManager to create the request
+                
                 var request = App.ReservationRequestManager.AddReservationRequest(
-                    roomNumber,
+                    _selectedRoom.RoomNumber,
                     requestedBy,
                     description,
                     meetingDate,
                     startTime,
                     endTime,
-                    participantCount
-                );
+                    participantCount);
 
-                DisplayAlert("Success", $"Request #{request.RequestID} submitted.", "OK");
-                Navigation.PopAsync(); // Go back to the previous page
+                await DisplayAlert("Success", $"Reservation Request #{request.RequestID} added successfully.", "OK");
             }
             catch (Exception ex)
             {
-                DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlert("Error", $"Error adding reservation request: {ex.Message}", "OK");
+            }
+        }
+
+        private async void OnBackToRoomsClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
             }
         }
     }
-}
+}}
