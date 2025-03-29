@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CAssigment3.PickRoomPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            
+            <!-- Page Title -->
+            <Label Text="Pick Meeting Room"
+                   Style="{StaticResource PageTitleStyle}" />
+
+            <!-- Example image banner at the top (optional) -->
+            <Image Source="sampleRoomImage.jpg"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   Margin="0,10,0,10" />
+
+            <!-- List of Meeting Rooms -->
+            <ListView x:Name="RoomsListView"
+                      HasUnevenRows="True"
+                      SelectionMode="Single"
+                      Margin="0,0,0,10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <!-- Icon for the layout (RoomTypeIcon) -->
+                                <Image Source="{Binding RoomTypeIcon}"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       VerticalOptions="Center" />
+                                <StackLayout Orientation="Vertical" Padding="5,0,0,0">
+                                    <Label Text="{Binding RoomNumber}" 
+                                           FontAttributes="Bold" 
+                                           TextColor="Black" />
+                                    <Label Text="{Binding RoomLayout}"
+                                           TextColor="Gray" />
+                                    <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}"
+                                           TextColor="Gray" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Action buttons -->
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand"
+                         Spacing="20">
+                <Button Text="Add Request"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Clicked="OnAddRequestClicked" />
+                <Button Text="View Requests"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Clicked="OnViewRequestsClicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

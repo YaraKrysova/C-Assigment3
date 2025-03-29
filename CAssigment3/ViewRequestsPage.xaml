@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CAssigment3.ViewRequestsPage"
+             Title="View Requests">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Existing Reservation Requests"
+                   Style="{StaticResource PageTitleStyle}" />
+
+            <ListView x:Name="RequestsListView"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5">
+                                <Label Text="{Binding RequestID, StringFormat='Request ID: {0}'}"
+                                       FontAttributes="Bold" 
+                                       TextColor="Black" />
+                                <Label Text="{Binding RequestedBy, StringFormat='Requested By: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding Description, StringFormat='Description: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding MeetingDate, StringFormat='Date: {0:MM/dd/yyyy}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding StartTime, StringFormat='Start Time: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding EndTime, StringFormat='End Time: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding ParticipantCount, StringFormat='Participants: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding RequestStatus, StringFormat='Status: {0}'}" 
+                                       TextColor="Gray" />
+                                <Label Text="{Binding MeetingRoom.RoomNumber, StringFormat='Room: {0}'}" 
+                                       TextColor="Gray" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

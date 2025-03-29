@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CAssigment3.AddRequestPage"
+             Title="Add Request">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Label Text="Add Reservation Request"
+                       Style="{StaticResource PageTitleStyle}" />
+
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Requested By" Style="{StaticResource SectionHeaderStyle}" />
+                    <Entry x:Name="RequestedByEntry" Style="{StaticResource DefaultEntryStyle}" />
+
+                    <Label Text="Meeting Description" Style="{StaticResource SectionHeaderStyle}" />
+                    <Editor x:Name="DescriptionEditor"
+                            HeightRequest="80"
+                            Margin="5" />
+
+                    <Label Text="Meeting Date" Style="{StaticResource SectionHeaderStyle}" />
+                    <DatePicker x:Name="MeetingDatePicker" Margin="5" />
+
+                    <Label Text="Start Time" Style="{StaticResource SectionHeaderStyle}" />
+                    <TimePicker x:Name="StartTimePicker" Margin="5" />
+
+                    <Label Text="End Time" Style="{StaticResource SectionHeaderStyle}" />
+                    <TimePicker x:Name="EndTimePicker" Margin="5" />
+
+                    <Label Text="Participant Count" Style="{StaticResource SectionHeaderStyle}" />
+                    <Entry x:Name="ParticipantCountEntry"
+                           Style="{StaticResource DefaultEntryStyle}"
+                           Keyboard="Numeric" />
+                </StackLayout>
+
+                <Button Text="Submit Request"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Clicked="OnSubmitRequestClicked" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
